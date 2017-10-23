@@ -1,23 +1,4 @@
-class Game {
-  constructor(numberOfRows, numberOfColumns, numberOfBombs) {
-    this._board = new Board(numberOfRows, numberOfColumns, numberOfBombs);
-  }
-
-  playMove(rowIndex,columnIndex){
-    this._board.flipTile(rowIndex, columnIndex);
-    if (this._board.playerBoard[rowIndex][columnIndex]==='B') {
-      console.log('Game Over');
-    } else if (!this._board.hasSafeTiles()) {
-      console.log('You won. Congratulations.');
-    } else {
-      console.log('Current board:');
-      Board.print(this._board.playerBoard);
-    }
-  }
-}
-
-
-class Board {
+export class Board {
   constructor(numberOfRows, numberOfColumns, numberOfBombs) {
     this._numberOfBombs = numberOfBombs;
     this._numberOfTiles = numberOfRows * numberOfColumns;
@@ -77,8 +58,6 @@ class Board {
   //my custom function for formatting the board and outputting to screen
   static print (board) {
     let joinedBoard =[];
-    console.log("logging this:");
-    //console.log(this);
     // going through the two dimension array one row at a time, joining each row and pushing it into joinedBoard array
     for (let i=0; i<board.length; i++)  {
       joinedBoard.push(board[i].join(' | '));
@@ -119,9 +98,3 @@ class Board {
     return board;
   }
 }
-
-const g = new Game(6,6,3);
-g.playMove(0,0);
-g.playMove(1,0);
-g.playMove(0,1);
-g.playMove(2,3);
